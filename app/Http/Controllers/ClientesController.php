@@ -50,9 +50,9 @@ class ClientesController extends Controller
         $cliente->correo = $request->correo;
         $cliente->habeas = $request->habeas;
         $cliente->save();
-       
+    
 
-        return redirect()->route('clientes_create');
+        return redirect()->route('clientes_create')->with('success','Felicidades, su registro ha sido exitoso');
     }
 
     /**

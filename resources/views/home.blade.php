@@ -44,6 +44,11 @@
     
     <section class="formulario">
         <div class="container formu">
+            @if (session('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                </div>
+            @endif
             <h1 class="formu_title">FORMULARIO DE REGISTRO</h1>
             <form action="{{route('clientes_create')}}" method="POST">
                 @csrf
@@ -116,7 +121,6 @@
             </form>
         </div>
     </section>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
     <script>
@@ -146,5 +150,7 @@
             getCiudads(e.target.value)
         })
     </script>
+
+    
 </body>
 </html>
