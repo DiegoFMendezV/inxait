@@ -138,3 +138,9 @@ small{
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.noSuficiente{
+    color: red;
+    text-align: center;
+    margin: 50px 0;
+}

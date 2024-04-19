@@ -33,3 +33,7 @@ Route::get('/select', function () {
     $departamentos =Departamentos::all();
     return view ('home', compact ('departamentos'));
 });
+
+Route::get('/noSuficiente', function () {
+    return view ('noSuficiente');
+});

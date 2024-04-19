@@ -13,9 +13,19 @@ class GanadorController extends Controller
      */
     public function index()
     {
-        $ganador=Cliente::inRandomOrder()->first();
-        return view('ganador', compact ('ganador'));
-        
+        // Verificar si hay al menos 5 registros en la base de datos
+        $totalParticipantes = Cliente::count();
+
+        if ($totalParticipantes >= 5) {
+            // Seleccionar un ganador aleatorio
+            $ganador = Cliente::inRandomOrder()->first();
+
+            // Devolver el ganador seleccionado
+            return view('ganador', compact ('ganador'));
+        } else {
+            // No hay suficientes participantes para seleccionar un ganador
+            return view('noSuficiente');
+        }        
     }
     
     /**
