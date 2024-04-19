@@ -7,6 +7,9 @@
     <title>Inxait</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg">
@@ -72,31 +75,19 @@
                     <input type="number" value="{{old('cedula') }}"class="form-control mb-3" name="cedula" id="cedula">
                 </div>
                 <div class="form-group">
-                    <label class="label" for="departamento">Departamento</label>
-                    @error('departamento')
-                        <br>
-                       <span>*{{ $message }}</span>
-                       <br>
-                    @enderror
-                    <input type="text" value="{{old('departamento')}}" class="form-control mb-3" name="departamento" id="departamento">
+                    <Label class="label_1">Departamento</Label>
+                    <select name="departamento_id" id="departamento">
+                        @foreach ($departamentos as $departamento)
+                            <option name="departamento" value="{{$departamento->id}}">{{$departamento->nombre}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label class="label" for="ciudad">Ciudad</label>
-                    @error('ciudad')
-                        <br>
-                       <span>*{{ $message }}</span>
-                       <br>
-                    @enderror
-                    <input type="text" value="{{old('ciudad')}}" class="form-control mb-3" name="ciudad" id="ciudad">
+                    <Label class="label_1">Ciudad</Label>
+                    <select name="ciudad_id" id="ciudads">
+                        <option name="ciudad" value="0">Selecciona la ciudad</option>
+                    </select>
                 </div>
-                {{-- <select name="departamento_id" id="">
-                    @foreach ($departamentos as $departamento)
-                        <option name="departamento" value="{{$departamento->id}}">{{$departamento->nombre}}</option>
-                    @endforeach
-                </select> --}}
-                {{-- <select name="" id="">
-                    <option name="ciudad" value="">Selecciona una Ciudad</option>
-                </select> --}}
                 <div class="form-group">
                     <label class="label" for="celular">Celular</label>
                     @error('celular')
@@ -127,5 +118,33 @@
     </section>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <script>
+        const departamento = document.getElementById('departamento')
+        const ciudads = document.getElementById('ciudads')
+
+        const getCiudads = async (departamento_id) => {
+            const response = await fetch(`api/departamento/${departamento_id}/ciudads`)
+
+            const data = await response.json();
+
+            let options = ``;
+
+            data.forEach(element => {
+                options = options + `<option value="${element.id}">${element.nombre}</option>`
+            });
+
+            ciudads.innerHTML = options;
+        }
+
+        window.onload = () => {
+            const departamento_id = departamento.value;
+            getCiudads(departamento_id)
+        }
+
+        departamento.addEventListener('change', (e)=>{
+            getCiudads(e.target.value)
+        })
+    </script>
 </body>
 </html>

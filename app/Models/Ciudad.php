@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Ciudad extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['nombre', 'departamento_id', 'status'];
+
+    public function departamento()
+    {
+        return $this->belongsTo(Departamento::class);
+    }
 }

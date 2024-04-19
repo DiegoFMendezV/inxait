@@ -33,8 +33,8 @@ class ClientesController extends Controller
             'nombre' => "required|min:3|alpha:ascii",
             'apellido' => "required|min:3|alpha:ascii",
             'cedula' => "required",
-            'departamento' => "required",
-            'ciudad' => "required",
+            'departamento_id' => "required",
+            'ciudad_id' => "required",
             'celular' => "required",
             'correo' => "required|email:rfc,dns",
             'habeas' => "required",
@@ -44,8 +44,8 @@ class ClientesController extends Controller
         $cliente->nombre = $request->nombre;
         $cliente->apellido = $request->apellido;
         $cliente->cedula = $request->cedula;
-        $cliente->departamento = $request->departamento;
-        $cliente->ciudad = $request->ciudad;
+        $cliente->departamento = $request->departamento_id;
+        $cliente->ciudad = $request->ciudad_id;
         $cliente->celular = $request->celular;
         $cliente->correo = $request->correo;
         $cliente->habeas = $request->habeas;

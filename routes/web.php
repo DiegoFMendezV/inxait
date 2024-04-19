@@ -19,7 +19,6 @@ use App\Http\Controllers\GanadorController;
 
 Route::get('/clientes', [ClientesController::class, 'index'])
     ->name('clientes');
-
     
 Route::post('/', [ClientesController::class, 'store'])
     ->name('clientes_create');
@@ -29,3 +28,8 @@ Route::get('/', [DepartamentoController::class, 'index'])
     
 Route::get('/ganador', [GanadorController::class, 'index'])
     ->name('ganador');
+
+Route::get('/select', function () {
+    $departamentos =Departamentos::all();
+    return view ('home', compact ('departamentos'));
+});

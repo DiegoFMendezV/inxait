@@ -7,10 +7,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
-<body>
+<body id="body_ganador">
     <section class="ganador">
         <div class="container">
-            <h1 class="titles">El Ganador es:</h1>
+            <h1 class="title_ganador">El Ganador es:</h1>
             <table class="table table-striped table-bordered">
                 <thead>
                   <tr>
@@ -34,10 +34,7 @@
                         <td>{{$ganador->correo}}</td>
                     </tr> 
                 </tbody>
-            </table>
-            <div class="imagen">
-                <img class="felicidades" src="https://media.istockphoto.com/id/1368531657/es/vector/felicitaciones-pancarta-tipogr%C3%A1fica-de-colores.jpg?s=612x612&w=0&k=20&c=HEeIltuO5bgzhZa-gGfSqM6d3aVAEcyJdMIb--pBhLE=" alt="">
-            </div>    
+            </table>    
               <a class="btn btn-primary"href="/clientes">Atrás</a>
               <a href="{{ route('ganador') }}"><button class="btn btn-warning">Nuevo Sorteo</button></a>
         </div>

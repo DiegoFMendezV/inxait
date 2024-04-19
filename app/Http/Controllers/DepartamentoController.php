@@ -63,4 +63,9 @@ class DepartamentoController extends Controller
     {
         //
     }
+
+    public function ciudads(Departamento $departamento)
+    {
+        return response()->json($departamento->ciudads);
+    }
 }
